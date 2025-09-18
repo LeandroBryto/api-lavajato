@@ -1,8 +1,15 @@
 package com.screenshot.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ScrapingRequest {
     
     @NotBlank(message = "URL é obrigatória")
@@ -10,11 +17,9 @@ public class ScrapingRequest {
     
     private String selector;
     private List<String> attributes;
-    private String script; // Para JavaScript personalizado
+    private String script;
     
-    // Construtores
-    public ScrapingRequest() {}
-    
+
     public ScrapingRequest(String url) {
         this.url = url;
     }
@@ -24,36 +29,5 @@ public class ScrapingRequest {
         this.selector = selector;
     }
     
-    // Getters e Setters
-    public String getUrl() {
-        return url;
-    }
-    
-    public void setUrl(String url) {
-        this.url = url;
-    }
-    
-    public String getSelector() {
-        return selector;
-    }
-    
-    public void setSelector(String selector) {
-        this.selector = selector;
-    }
-    
-    public List<String> getAttributes() {
-        return attributes;
-    }
-    
-    public void setAttributes(List<String> attributes) {
-        this.attributes = attributes;
-    }
-    
-    public String getScript() {
-        return script;
-    }
-    
-    public void setScript(String script) {
-        this.script = script;
-    }
+
 }
