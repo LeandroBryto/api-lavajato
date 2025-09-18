@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste do Endpoint</title>
+</head>
+<body>
+    <h1>Teste do Novo Endpoint</h1>
+    
+    <div>
+        <h2>Testar busca por seletor</h2>
+        <button onclick="testEndpoint()">Testar Endpoint</button>
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        async function testEndpoint() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testando...';
+            
+            try {
+                const response = await fetch('http://localhost:8080/api/scraping/search-by-selector', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: 'https://www.google.com',
+                        selector: 'title'
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                resultDiv.innerHTML = 'Erro: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
