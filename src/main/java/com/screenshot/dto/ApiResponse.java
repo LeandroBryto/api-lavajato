@@ -1,7 +1,5 @@
 package com.screenshot.dto;
 
-
-
 import java.time.LocalDateTime;
 
 public class ApiResponse<T> {
@@ -15,16 +13,46 @@ public class ApiResponse<T> {
     public ApiResponse() {
         this.timestamp = LocalDateTime.now();
     }
-
-    public ApiResponse(boolean success, String message) {
-        this();
+    
+    public ApiResponse(boolean success, String message, T data) {
         this.success = success;
+        this.message = message;
+        this.data = data;
+        this.timestamp = LocalDateTime.now();
+    }
+    
+    // Getters
+    public boolean isSuccess() {
+        return success;
+    }
+    
+    public String getMessage() {
+        return message;
+    }
+    
+    public T getData() {
+        return data;
+    }
+    
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+    
+    // Setters
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    public void setMessage(String message) {
         this.message = message;
     }
     
-    public ApiResponse(boolean success, String message, T data) {
-        this(success, message);
+    public void setData(T data) {
         this.data = data;
+    }
+    
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
     
     // Métodos estáticos para facilitar criação
@@ -37,39 +65,6 @@ public class ApiResponse<T> {
     }
     
     public static <T> ApiResponse<T> error(String message) {
-        return new ApiResponse<>(false, message);
-    }
-
-    // Getters e Setters
-    public boolean isSuccess() {
-        return success;
-    }
-
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
+        return new ApiResponse<>(false, message, null);
     }
 }
