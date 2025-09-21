@@ -46,6 +46,11 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+
         <!-- Playwright para automação web -->
         <dependency>
             <groupId>com.microsoft.playwright</groupId>
