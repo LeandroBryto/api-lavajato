@@ -1,64 +1,22 @@
 package com.screenshot.dto;
 
-import java.util.List;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ScrapingRequest {
     
+    @NotNull(message = "URL é obrigatória")
+    @NotBlank(message = "URL não pode estar vazia")
     private String url;
+    
+    @NotNull(message = "Seletor é obrigatório")
+    @NotBlank(message = "Seletor não pode estar vazio")
     private String selector;
-    private List<String> attributes;
-    private String script;
-    
-    // Construtores
-    public ScrapingRequest() {}
-    
-    public ScrapingRequest(String url) {
-        this.url = url;
-    }
-    
-    public ScrapingRequest(String url, String selector) {
-        this.url = url;
-        this.selector = selector;
-    }
-    
-    public ScrapingRequest(String url, String selector, List<String> attributes, String script) {
-        this.url = url;
-        this.selector = selector;
-        this.attributes = attributes;
-        this.script = script;
-    }
-    
-    // Getters
-    public String getUrl() {
-        return url;
-    }
-    
-    public String getSelector() {
-        return selector;
-    }
-    
-    public List<String> getAttributes() {
-        return attributes;
-    }
-    
-    public String getScript() {
-        return script;
-    }
-    
-    // Setters
-    public void setUrl(String url) {
-        this.url = url;
-    }
-    
-    public void setSelector(String selector) {
-        this.selector = selector;
-    }
-    
-    public void setAttributes(List<String> attributes) {
-        this.attributes = attributes;
-    }
-    
-    public void setScript(String script) {
-        this.script = script;
-    }
 }

@@ -1,18 +1,24 @@
 package com.screenshot.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ApiResponse<T> {
     
     private boolean success;
     private String message;
     private T data;
-    private LocalDateTime timestamp;
     
-    // Construtores
-    public ApiResponse() {
-        this.timestamp = LocalDateTime.now();
-    }
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime timestamp;
     
     public ApiResponse(boolean success, String message, T data) {
         this.success = success;
@@ -21,41 +27,7 @@ public class ApiResponse<T> {
         this.timestamp = LocalDateTime.now();
     }
     
-    // Getters
-    public boolean isSuccess() {
-        return success;
-    }
-    
-    public String getMessage() {
-        return message;
-    }
-    
-    public T getData() {
-        return data;
-    }
-    
-    public LocalDateTime getTimestamp() {
-        return timestamp;
-    }
-    
-    // Setters
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-    
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    
-    public void setData(T data) {
-        this.data = data;
-    }
-    
-    public void setTimestamp(LocalDateTime timestamp) {
-        this.timestamp = timestamp;
-    }
-    
-    // Métodos estáticos para facilitar criação
+
     public static <T> ApiResponse<T> success(T data) {
         return new ApiResponse<>(true, "Operação realizada com sucesso", data);
     }
